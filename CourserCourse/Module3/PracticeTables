@@ -1,0 +1,88 @@
+mysql> select * from Customer;
++--------+----------------------+---------------+----------+------------------+---------+------------+-------+-------+
+| CustNo | CustName             | Address       | Internal | Contact          | Phone   | City       | State | ZIP   |
++--------+----------------------+---------------+----------+------------------+---------+------------+-------+-------+
+| C100   | Football             | Box 352200    | Y        | Mary Manager     | 6857100 | Boulder    | CO    | 80309 |
+| C101   | Men's Basketball     | Box 352400    | Y        | Sally Supervisor | 5431700 | Boulder    | CO    | 80309 |
+| C103   | Baseball             | Box 352020    | Y        | Bill Baseball    | 5431234 | Boulder    | CO    | 80309 |
+| C104   | Women's Softball     | Box 351200    | Y        | Sue Softball     | 5434321 | Boulder    | CO    | 80309 |
+| C105   | High School Football | 123 AnyStreet | N        | Coach Bob        | 4441234 | Louisville | CO    | 80027 |
++--------+----------------------+---------------+----------+------------------+---------+------------+-------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> select * from FACILITY;
++-------+------------------+
+| FacNo | FacName          |
++-------+------------------+
+| F102  | Baseball field   |
+| F101  | Basketball arena |
+| F100  | Football stadium |
+| F103  | Recreation room  |
++-------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from LOCATION;
++-------+-------+-----------------+
+| LocNo | FacNo | LocName         |
++-------+-------+-----------------+
+| L100  | F100  | Locker room     |
+| L101  | F100  | Plaza           |
+| L102  | F100  | Vehicle gate    |
+| L103  | F101  | Locker room     |
+| L104  | F100  | Ticket Booth    |
+| L105  | F101  | Gate            |
+| L106  | F100  | Pedestrian gate |
++-------+-------+-----------------+
+7 rows in set (0.00 sec)
+
+
+mysql> select * from EVENTREQUEST;
++---------+--------+-------+------------+------------+------------+----------+----------+-------------+-------+
+| eventNo | custNo | facNo | dateHeld   | dateReq    | dateAuth   | status   | estCost  | estAudience | budNo |
++---------+--------+-------+------------+------------+------------+----------+----------+-------------+-------+
+| E100    | C100   | F100  | 2018-10-25 | 2018-06-06 | 2018-06-08 | Approved |  5000.00 |       80000 | B1000 |
+| E101    | C100   | F100  | 2018-10-26 | 2018-07-28 | NULL       | Pending  |  5000.00 |       80000 | B1000 |
+| E102    | C100   | F100  | 2018-09-14 | 2018-07-28 | 2018-07-31 | Approved |  5000.00 |       80000 | B1000 |
+| E103    | C100   | F100  | 2018-09-21 | 2018-07-28 | 2018-08-01 | Approved |  5000.00 |       80000 | B1000 |
+| E104    | C101   | F101  | 2018-12-03 | 2018-07-28 | 2018-07-31 | Approved |  2000.00 |       12000 | B1000 |
+| E105    | C101   | F101  | 2018-12-05 | 2018-07-28 | 2018-08-01 | Approved |  2000.00 |       10000 | B1000 |
+| E106    | C101   | F101  | 2018-12-12 | 2018-07-28 | 2018-07-31 | Approved |  2000.00 |       10000 | B1000 |
+| E107    | C105   | F100  | 2018-11-23 | 2018-07-28 | 2018-07-31 | Denied   | 10000.00 |        5000 | NULL  |
++---------+--------+-------+------------+------------+------------+----------+----------+-------------+-------+
+8 rows in set (0.00 sec)
+
+
+mysql> select * from RESOURCETBL;
++-------+--------------+-------+
+| resNo | resName      | rate  |
++-------+--------------+-------+
+| R100  | attendant    | 10.00 |
+| R101  | police       | 15.00 |
+| R102  | usher        | 10.00 |
+| R103  | nurse        | 20.00 |
+| R104  | janitor      | 15.00 |
+| R105  | food service | 10.00 |
++-------+--------------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from EVENTPLAN;
++--------+---------+-------+------------+--------------------------+-----------+
+| planNo | eventNo | empNo | workDate   | notes                    | activity  |
++--------+---------+-------+------------+--------------------------+-----------+
+| P100   | E100    | E102  | 2018-10-25 | Standard operation       | Operation |
+| P101   | E104    | E100  | 2018-12-03 | Watch for gate crashers  | Operation |
+| P102   | E105    | E102  | 2018-12-05 | Standard operation       | Operation |
+| P103   | E106    | NULL  | 2018-12-12 | Watch for seat switching | Operation |
+| P104   | E101    | E101  | 2018-10-26 | Standard cleanup         | Cleanup   |
+| P105   | E100    | E101  | 2018-10-25 | Light cleanup            | Cleanup   |
+| P199   | E102    | E101  | 2018-12-10 | ABC                      | Operation |
+| P299   | E101    | E101  | 2018-10-26 | NULL                     | Operation |
+| P349   | E106    | E101  | 2018-12-12 | NULL                     | Setup     |
+| P85    | E100    | E102  | 2018-10-25 | Standard operation       | Cleanup   |
+| P95    | E101    | E102  | 2018-10-26 | Extra security           | Cleanup   |
++--------+---------+-------+------------+--------------------------+-----------+
+11 rows in set (0.00 sec)
+
+
+
