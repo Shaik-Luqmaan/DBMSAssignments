@@ -1,0 +1,97 @@
+1
+mysql> select distinct City,State,Zip 
+    -> from Customer;
++------------+-------+-------+
+| City       | State | Zip   |
++------------+-------+-------+
+| Boulder    | CO    | 80309 |
+| Louisville | CO    | 80027 |
++------------+-------+-------+
+2 rows in set (0.00 sec)
+
+2
+mysql> select EmpName,Departnment,Phone,Email
+    ->  from Employee 
+    ->  where Phone 
+    ->  Like '3-%';
++--------------------+----------------+--------+--------------------+
+| EmpName            | Departnment    | Phone  | Email              |
++--------------------+----------------+--------+--------------------+
+| Chuck Coordinator  | Administration | 3-1111 | chuck@colorado.edu |
+| Sally Supervisor   | Planning       | 3-2222 | sally@colorado.edu |
+| Alan Administrator | Administration | 3-3333 | alan@colorado.edu  |
++--------------------+----------------+--------+--------------------+
+3 rows in set (0.00 sec)
+
+3.
+
+mysql> select * from ResourceTbl 
+    -> where Rate 
+    -> between 10.00 and 20.00 
+    -> order by Rate;
++-------+--------------+-------+
+| ResNo | ResName      | Rate  |
++-------+--------------+-------+
+| R100  | attendant    | 10.00 |
+| R102  | usher        | 10.00 |
+| R105  | food service | 10.00 |
+| R101  | police       | 15.00 |
+| R104  | janitor      | 15.00 |
+| R103  | nurse        | 20.00 |
++-------+--------------+-------+
+
+4
+mysql> select EventNo,Status,DataAuth
+    -> from EventRequest 
+    -> where Status = 'Approved' or 'Denied'
+    -> and DataAuth between '2018-07-01' and '2018-07-31';
++---------+----------+------------+
+| EventNo | Status   | DataAuth   |
++---------+----------+------------+
+| E100    | Approved | 2018-06-08 |
+| E102    | Approved | 2018-07-31 |
+| E103    | Approved | 2018-08-01 |
+| E104    | Approved | 2018-07-31 |
+| E105    | Approved | 2018-08-01 |
+| E106    | Approved | 2018-07-31 |
++---------+----------+------------+
+6 rows in set, 1 warning (0.00 sec)
+
+5
+
+mysql> select LocNo, LocName
+    -> from Location
+    -> where FacNo = (
+    -> select FacNo
+    -> from Facility
+    -> where FacName = 'Basketball arena');
++-------+-------------+
+| LocNo | LocName     |
++-------+-------------+
+| L103  | Locker room |
+| L105  | Gate        |
++-------+-------------+
+2 rows in set (0.00 sec)
+
+6.
+
+select PlanNo, count(LineNo) as LineCount, sum(NumberFld) as TotalNumberFlds
+    -> from EventPlanLine
+    -> group by PlanNo;
+ +--------+-----------+-----------------+
+ | PlanNo | LineCount | TotalNumberFlds |
+ +--------+-----------+-----------------+
+ | P100   |         4 |               7 |
+ | P101   |         3 |               8 |
+ | P102   |         3 |               8 |
+ | P103   |         3 |               8 |
+ | P104   |         2 |               8 |
+ | P105   |         2 |               8 |
+ | P199   |         1 |               1 |
+ | P349   |         1 |               1 |
+ | P85    |         3 |              10 |
+ | P95    |         5 |              16 |
+ +--------+-----------+-----------------+
+10 rows in set (0.00 sec)
+
+
