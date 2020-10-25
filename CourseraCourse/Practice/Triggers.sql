@@ -14,7 +14,7 @@ SET new.StdMarks = new.StdMarks+50;
 insert into ExampleTrigger values ('1','A','25');
 insert into ExampleTrigger values ('2','B','35');
 insert into ExampleTrigger values ('3','C','45');
-
+insert into ExampleTrigger values ('4','D','27');
 select * from ExampleTrigger;
 
 show triggers
